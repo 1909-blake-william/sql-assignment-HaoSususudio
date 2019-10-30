@@ -377,7 +377,7 @@ BEGIN
     WHERE   EmployeeId_in = e1.EmployeeId;
 END;
 /
-
+----- Excuting  ----------
 SET     SERVEROUTPUT ON
 DECLARE c_out sys_refcursor;
         manager_employeeId number;
@@ -394,26 +394,6 @@ BEGIN
   CLOSE c_out;
 END;
 /
-
-/******** Types approach, unused*******************
------------P.S. Delete before compiling new ones----------------------
-DROP TYPE manager_table; 
-DROP TYPE manager_record;
-----------------------------------------------------------------------------------
-CREATE OR REPLACE TYPE manager_record 
-AS 
-OBJECT 
-(
-    EmployeeId number,
-    FirstName varchar2(20),
-    LastName varchar2(20)
-);
-/
-CREATE OR REPLACE TYPE manager_table 
-AS 
-TABLE of manager_record;
-/
-*****************************************************/
 
 -- 4.3 Stored Procedure Output Parameters
 -- Task – Create a stored procedure that returns the name and company of a customer.
@@ -437,7 +417,7 @@ DECLARE c_out sys_refcursor;
         last_name varchar2(20);
         company varchar2(80);
 BEGIN
-    get_name_and_company(2, c_out);
+    get_name_and_company(5, c_out);
     LOOP 
         FETCH c_out
         INTO  customer_id, first_name, last_name, company;
